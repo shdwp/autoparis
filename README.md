@@ -1,9 +1,9 @@
-# AutoParis 
+## AutoParis 
 AutoParis is a library, that extends [j4mie's paris ORM](http://github.com/j4mie/paris) for automated scheme creation and keeping it up to date.
 
 ## How to use it?
 ### Requirements
-1. Model should extend __\Autoparis\AutoModel__ and provide public (_non static_) method __getFields()__. It should return array of instances of __\Autoparis\Field__ or classes extending it.
+1. Model should extend __\Autoparis\AutoModel__ and provide public ( *non static* ) method __getFields()__. It should return array of instances of __\Autoparis\Field__ or classes extending it.
 2. **public static $_field** of every model should be setted up.
 3. You should provide **lookup_models()** function in __bin/autoparis.php__, that'll return array of models classes
 4. And you should properly configure idiorm when you start autoparis (you can get trough it simply including your project boostrap, that will call __ORM::configure__'s)
