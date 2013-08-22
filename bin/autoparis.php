@@ -1,44 +1,15 @@
 #!/usr/bin/env php
 <?php
 include __DIR__ . "/vendor/autoload.php";
-include __DIR__ . "/src/bootstrap.php";
+
+// You can use your boostrap, where idiorm configured
+//include __DIR__ . "/src/bootstrap.php";
 
 /*
- * Function must return array of model classes
+ * You should implement this function by yourself
  */
 function lookup_models() {
-    global $app;
-    $models = [];
-    foreach ($app->config("comps") as $path) {
-        $dir = opendir(realpath(""
-            . $path 
-            . DIRECTORY_SEPARATOR 
-            . "Model"
-        ));
-        if ($dir !== false) {
-            while (false !== ($file = readdir($dir))) {
-                if (array_search($file, [".", ".."]) === false) {
-                    $info = pathinfo(realpath(""
-                        . $path
-                        . DIRECTORY_SEPARATOR
-                        . "Model"
-                        . DIRECTORY_SEPARATOR
-                        . $file
-                    ));
-
-                    if ($info["extension"] == "php") {
-                        $models[] = "\\"
-                            . str_replace(DIRECTORY_SEPARATOR, "\\", $path)
-                            . "\\"
-                            . "Model\\"
-                            . $info["filename"];
-                    }
-                }
-            }
-        }
-    }
-
-    return $models;
+    return [];
 }
 
 use \AutoParis\Generator;
@@ -127,7 +98,7 @@ if (array_key_exists("help", $opts)) {
     echo "--force - force update" . PHP_EOL;
     echo PHP_EOL . "http://shadowprince.github.com/autoparis" . PHP_EOL;
 } else if (array_key_exists("model", $opts)) {
-    update_model($app->getCC($opts["model"]), ORM, $opts);
+    update_model($opts["model"], ORM, $opts);
 } else {
     foreach (lookup_models() as $model) {
         update_model($model, ORM, $opts);

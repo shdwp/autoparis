@@ -23,6 +23,6 @@
         "j4mie/paris": "*"
     },
     "autoload": {
-        {"AutoParis": "."}
+        {"Autoparis": "."}
     }
 }
