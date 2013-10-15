@@ -52,12 +52,10 @@ abstract class AutoModel extends \Model {
     }
 
     public function foreign_key($key, $field = null) {
-        if (array_key_exists($key, $this->instances)) {
-            return $this->instances[$key];
-        } else {
+        if (!array_key_exists($key, $this->instances)) {
             $this->instances[$key] = $this->belongs_to($key, $field)->find_one();
-            return $this->foreign_key($key, $field);
         }
+        return $this->instances[$key];
     }
 
     public function save() {
