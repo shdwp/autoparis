@@ -22,14 +22,14 @@ abstract class AutoModel extends \Model {
         );
     }
 
-    public function __set($prop, $value) {
+    public function __set($prop, $value = null) {
         return call_user_func_array(
             array($this, "set"),
             func_get_args()
         );
     }
 
-    public function set($property, $value) {
+    public function set($property, $value = null) {
         if (array_key_exists($property, $this->instances))
             unset($this->instances[$property]);
 
