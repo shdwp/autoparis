@@ -11,7 +11,7 @@ class Generator {
     }
 
     protected static function generateTableSql($table, $fields) {
-        $sfields = [];
+        $sfields = array();
         foreach ($fields as $field) {
             $sfields[] = self::generateFieldSql($field); 
         }
@@ -56,9 +56,9 @@ class Generator {
         try {
             $shot = $orm::for_table($table)->raw_query("SHOW COLUMNS FROM " . $table)->find_array();
         } catch (\PDOException $e) {
-            return [];
+            return array();
         }
-        $res = [];
+        $res = array();
         foreach ($shot as $field) {
             $res[$field['Field']] = $field;
         }
@@ -70,12 +70,12 @@ class Generator {
      * @TODO: rename $old
      */
     public static function getDiff($fresh, $old) {
-        $fields = [
-            "added" => [],
-            "deleted" => [],
-            "modified" => [],
-            "unmodified" => [],
-        ];
+        $fields = array(
+            "added" => array(),
+            "deleted" => array(),
+            "modified" => array(),
+            "unmodified" => array(),
+        );
 
         foreach ($fresh as $name => $field) {
             if (array_key_exists($name, $old)) {
@@ -107,10 +107,10 @@ class Generator {
             (new $model())->getFields()
         );
 
-        return [
+        return array(
             self::$NEW_TABLE,
-            [$sql],
-        ];
+            array($sql),
+        );
     }
 
     protected static function update($model, $orm) {
@@ -121,7 +121,7 @@ class Generator {
             self::getTableSnapshot($model::$_table, $orm)
         );
 
-        $sql = [];
+        $sql = array();
         $status = 0;
 
         foreach ($fields["added"] as $field) {
@@ -150,10 +150,10 @@ class Generator {
         }
 
         self::dropFreshTable($model, $orm);
-        return [
+        return array(
             $status,
             $sql,
             $fields,
-        ];
+        );
     }
 }

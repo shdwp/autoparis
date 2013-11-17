@@ -4,7 +4,7 @@ namespace Autoparis;
 abstract class Field {
     protected $name, $params, $type;
 
-    public function __construct($name, $params=[]) {
+    public function __construct($name, $params=array()) {
         $this->name = $name;
         $this->params = $params;
     }

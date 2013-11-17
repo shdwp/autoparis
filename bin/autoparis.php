@@ -9,7 +9,7 @@ include __DIR__ . "/vendor/autoload.php";
  * You should implement this function by yourself
  */
 function lookup_models() {
-    return [];
+    return array();
 }
 
 use \AutoParis\Generator;
@@ -74,7 +74,7 @@ function update_model($model, $orm, $opts) {
     if ($opts["sql"] === true && count($sql)) {
         echo implode(PHP_EOL, $sql) . PHP_EOL;
     } else {
-        if (in_array($status, [0, Generator::$NEW_TABLE]) || $opts["force"] === true) {
+        if (in_array($status, array(0, Generator::$NEW_TABLE)) || $opts["force"] === true) {
             foreach ($sql as $line) {
                 $orm::get_db()->exec($line);
             }

@@ -2,7 +2,7 @@
 namespace Autoparis;
 
 abstract class AutoModel extends \Model {
-    protected $instances = [];
+    protected $instances = array();
 
     public abstract function getFields();
 
