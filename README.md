@@ -14,7 +14,7 @@ Autoparis can be simply installed by [composer](http://getcomposer.org), actual 
 ### Usage
 Autoparis is a cli-tool, located in __bin/autoparis.php__. You can get help trough __--help__. Autoparis has behavior like django's tool.
 By default, autoparis will update all schemes for models returned by **lookup_models()**
-Like django, autoparis will not modify you'r tables if you dont provide __--force__ option, __becose that action can damage you'r data__, so dont run it on production db's.
+Like django, autoparis will not modify your tables if you dont provide __--force__ option, because that action can damage  data, so dont run it on production databases.
 
 ## Documentation
 There is [documentation](http://github.com/shadowprince/autoparis/wiki), that covers few topics that might be unclear and usefull. 
